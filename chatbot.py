@@ -13,7 +13,6 @@ chat = model.start_chat(history=[])
 def get_gemini_response(user_prompt):
     response = chat.send_message(user_prompt, stream = True)
     return response
-
 st.set_page_config(page_title="Chef Baloney", page_icon="🍳", layout="wide")
 st.markdown("<h1 style='text-align: center;'>Ask Chef Baloney</h1>", unsafe_allow_html=True)
 st.write("\n")
