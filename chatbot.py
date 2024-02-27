@@ -44,3 +44,14 @@ if submit and user_input:
         st.write(chunk.text)
         st.session_state['chat_history'].append(("Chef Baloney", chunk.text))
     
+
+
+
+
+
+footer_placeholder = st.empty()
+footer_placeholder.markdown("""
+    <div style="position: bottom; width: 100%; text-align: center;">
+        <h1 style='font-size: 18px;'>This site is brought to you by thehappybaloney. It's a work-in progress. If you have any queries, or suggestions on how this site can be made better feel free to reach out to me on Twitter or Github (@thehappybaloney).</h1>
+    </div>
+""", unsafe_allow_html=True)
