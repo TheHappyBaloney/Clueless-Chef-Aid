@@ -11,7 +11,7 @@ model = genai.GenerativeModel("gemini-pro")
 chat = model.start_chat(history=[])
 
 def get_gemini_response(user_prompt):
-    response = chat.send(user_prompt, stream = True)
+    response = chat.send_message(user_prompt, stream = True)
     return response
 
 st.set_page_config(page_title="Chef Baloney", page_icon="🍳", layout="wide")
@@ -35,3 +35,8 @@ if submit and user_input:
     for chunk in response.split("\n"):
         st.write(chunk.text)
         st.session_state['chat_history'].append(f"Chef Baloney: {chunk.text}")
+        st.subheader("The Chat History is")
+    
+        for role, text in st.session_state['chat_history']:
+            st.write(f"{role}: {text}")
+        
