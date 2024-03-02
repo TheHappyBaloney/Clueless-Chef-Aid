@@ -31,7 +31,8 @@ words = user_input.split()
 user_input = ', '.join(words)
 submit = st.button("Ask Chef Baloney")
 st.markdown("<h1 style='font-size: 17px; text-align: center; color:  #cb202d;'> Pro Tip: Incase you're too lazy to cook, order good food from  <a href='https://play.google.com/store/apps/details?id=com.application.zomato&hl=en_IN&gl=US' target='_blank'>Zomato</a>. </h1>  <h2 style='font-size: 25px; text-align: center; color:  #cb202d;'> But don't you dare order anything from Swiggy!!!! </h2> <h3 style='font-size: 17px; text-align: center; color:  #cb202d;'> They made @thehappybaloney sad by not commenting under their reel. </h3>", unsafe_allow_html=True)
-user_prompt = f"Based on the ingredients mentioned by user{user_input}, combine all ingreients and generate recipe of one simple dish across various cuisines, provided the ingredients available with the user apart from the ones that they have mentioned are salt, sugar and water. The only appliances the user got is a gas stove and microwave and the only utensils user got are spoon, fork, knife, plate and mug. Present the response in the following format : Name of the dish, Preparation time, Ingredients, Steps to prepare the dish."
+
+user_prompt = f" Inagine yourself as a trained chef.Based on the ingredients mentioned by user{user_input}, combine all ingreients and generate recipe of one simple dish across various cuisines, provided the ingredients available with the user apart from the ones that they have mentioned are salt, sugar and water. The only appliances the user got is a gas stove and microwave and the only utensils user got are spoon, fork, knife, plate and mug. Present the response in the following format : Name of the dish, Preparation time, Ingredients, Steps to prepare the dish."
 
 
 if submit and user_input:
