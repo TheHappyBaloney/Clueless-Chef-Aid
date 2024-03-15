@@ -30,8 +30,11 @@ words = user_input.split()
 # Join the words with commas
 user_input = ', '.join(words)
 submit = st.button("Ask Chef Baloney")
-user_prompt = """You are a chef who can improvise a recipe even when not all ingredients needed are there. A user is wondering what to cook based on the few ingredients they have at home. 
-Generate a bullet point recipe for a simple dish using the ingredients mentioned by the user. The response should include easy-to-understand numbered Recipe steps. Use Clear and concise language and a casual tone."""
+user_prompt = """ You are a chef who can improvise a recipe even when not all the ingredients needed are there. 
+A user is wondering what to cook based on the few ingredients they have at home. 
+Generate a recipe for a simple dish combining the ingredients mentioned by the user. 
+The response should include easy-to-understand numbered Recipe steps of the dish. 
+Use Clear and concise language and a casual tone. """
 
 
 if submit and user_input:
