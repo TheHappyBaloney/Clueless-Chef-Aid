@@ -30,21 +30,9 @@ words = user_input.split()
 # Join the words with commas
 user_input = ', '.join(words)
 submit = st.button("Ask Chef Baloney")
-st.markdown("<h1 style='font-size: 17px; text-align: center; color:  #cb202d;'> Pro Tip: Incase you're too lazy to cook, order good food from  <a href='https://play.google.com/store/apps/details?id=com.application.zomato&hl=en_IN&gl=US' target='_blank'>Zomato</a>. </h1>  <h2 style='font-size: 25px; text-align: center; color:  #cb202d;'> But don't you dare order anything from Swiggy!!!! </h2> <h3 style='font-size: 17px; text-align: center; color:  #cb202d;'> They made @thehappybaloney sad by not commenting under their reel. </h3>", unsafe_allow_html=True)
+st.markdown("<h1 style='font-size: 17px; text-align: center; color:  #cb202d;'> Pro Tip: In case you're too lazy to cook, order good food from  <a href='https://play.google.com/store/apps/details?id=com.application.zomato&hl=en_IN&gl=US' target='_blank'>Zomato</a>. </h1>  <h2 style='font-size: 25px; text-align: center; color:  #cb202d;'> But don't you dare order anything from Swiggy!!!! </h2> <h3 style='font-size: 17px; text-align: center; color:  #cb202d;'> They made @thehappybaloney sad by not commenting under their reel. </h3>", unsafe_allow_html=True)
 
-user_prompt = """Generate a recipe for a simple dish using the ingredients mentioned by the user. Craft the response in the following format:
-- **Name of the Dish:** [Name of the dish]
-- **Preparation Time:** [Preparation time]
-- **Ingredients:**
-  - [Ingredient 1]
-  - [Ingredient 2]
-  - ...
-- **Steps to Prepare the Dish:**
-  1. [Step 1]
-  2. [Step 2]
-  3. ...
-  
-Include steps for combining and cooking the ingredients to create the dish."""
+user_prompt = """Generate a recipe for a simple dish using the ingredients mentioned by the user. Craft the response by combining only the items mentioned by the user, and every time produce response in the order of the name of the dish, Preparation Time, Ingredients, and Recipe steps."""
 
 
 if submit and user_input:
