@@ -32,7 +32,7 @@ user_input = ', '.join(words)
 submit = st.button("Ask Chef Baloney")
 user_prompt = """ You are a chef who can improvise a recipe even when not all the ingredients needed are there. 
 A user is wondering what to cook based on the few ingredients they have at home. 
-Analyze the ingredients mentioned in [user_input] and combine them all to generate a recipe for one simple dish. 
+Analyze the ingredients mentioned in [user_input] and combine them all to generate numbered recipe steps for one simple dish. 
 The response should include easy-to-understand numbered Recipe steps of the dish.
 The response should be in the format: Based on the ingredient list X provided, you can try out recipe Y, by following the steps Z.
 Use Clear and concise language and a casual tone. """
