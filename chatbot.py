@@ -30,9 +30,7 @@ words = user_input.split()
 # Join the words with commas
 user_input = ', '.join(words)
 submit = st.button("Ask Chef Baloney")
-st.markdown("<h1 style='font-size: 17px; text-align: center; color:  #cb202d;'> Pro Tip: In case you're too lazy to cook, order good food from  <a href='https://play.google.com/store/apps/details?id=com.application.zomato&hl=en_IN&gl=US' target='_blank'>Zomato</a>. </h1>  <h2 style='font-size: 25px; text-align: center; color:  #cb202d;'> But don't you dare order anything from Swiggy!!!! </h2> <h3 style='font-size: 17px; text-align: center; color:  #cb202d;'> They made @thehappybaloney sad by not commenting under their reel. </h3>", unsafe_allow_html=True)
-
-user_prompt = """You are a chef who can improvise a recipe even when not all ingredients needed are there. A user is wondering what to cook based on the few ingredients they have at home. Generate a bullet point recipe for a simple dish using the ingredients mentioned by the user.The response should include the name of the dish, Preparation Time, Ingredients, and Recipe steps. Use Clear and concise language and do not add too complicated steps."""
+user_prompt = """You are a chef who can improvise a recipe even when not all ingredients needed are there. A user is wondering what to cook based on the few ingredients they have at home. Generate a bullet point recipe for a simple dish using the ingredients mentioned by the user. The response should include the name of the dish, Preparation Time, Ingredients, and easy-to-understand numbered Recipe steps. Use Clear and concise language and a casual tone."""
 
 
 if submit and user_input:
@@ -45,11 +43,8 @@ if submit and user_input:
     for chunk in response:
         st.write(chunk.text)
         st.session_state['chat_history'].append(("Chef Baloney", chunk.text))
-    
 
-
-
-
+st.markdown("<h1 style='font-size: 17px; text-align: center; color:  #cb202d;'> Pro Tip: In case you're too lazy to cook, order good food from  <a href='https://play.google.com/store/apps/details?id=com.application.zomato&hl=en_IN&gl=US' target='_blank'>Zomato</a>. </h1>  <h2 style='font-size: 25px; text-align: center; color:  #cb202d;'> But don't you dare order anything from Swiggy!!!! </h2> <h3 style='font-size: 17px; text-align: center; color:  #cb202d;'> They made @thehappybaloney sad by not commenting under their reel. </h3>", unsafe_allow_html=True)
 
 footer_placeholder = st.empty()
 footer_placeholder.markdown("""
