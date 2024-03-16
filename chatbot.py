@@ -18,11 +18,6 @@ def get_gemini_response(user_prompt):
 st.set_page_config(page_title="Chef Baloney", page_icon="🍳", layout="wide")
 st.markdown("<h1 style='text-align: center;'>Ask Chef Baloney</h1>", unsafe_allow_html=True)
 st.write("\n")
-st.components.v1.html("""
-<div style="text-align: center;">
-  <object type="text/html" data="path/to/whisk_and_sauce.html" style="width:50%; height:50%; margin:auto;"></object>
-</div>
-""", height=500)
 
 st.markdown("<h1 style='font-size: 25px; color: orange;'> Chef Baloney is here to help you with your cooking queries. Ask away!</h1>", unsafe_allow_html=True)
 st.write(" We can generate recipes across 100+ cuisines for you based on the ingridients you mention below.")
