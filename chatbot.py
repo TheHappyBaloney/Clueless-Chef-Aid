@@ -34,10 +34,10 @@ user_input = ', '.join(words)
 submit = st.button("Ask Chef Baloney")
 user_prompt = """ You are a chef who can improvise a recipe even when not all the ingredients needed are there. 
 A user is wondering what to cook based on the few ingredients they have at home. 
-Analyze the ingredients mentioned in [user_input] and combine them all to generate numbered recipe steps for one simple dish. 
-The response should be in the format: Based on the ingredient list X provided, you can try out recipe Y, by following the steps Z.
+Analyze the ingredients mentioned in [user_input] and combine them all to generate a single recipe for a simple dish. 
+The recipe should have a name and be broken down into numbered steps. 
+The response should be in the format: Based on the ingredient list X provided, you can try out recipe Y, by following the steps Z. 
 Use Clear and concise language and a casual tone. """
-
 
 if submit and user_input:
     st.session_state['chat_history'].append(f"You: {user_prompt}")
