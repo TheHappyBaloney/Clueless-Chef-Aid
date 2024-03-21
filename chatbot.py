@@ -12,30 +12,6 @@ genai.configure(api_key=os.getenv("API_KEY"))
 model = genai.GenerativeModel("gemini-pro")
 chat = model.start_chat(history=[])
 
-
-def name_recipe(ingridents):   
-
-    name_prompt = """ You are a chef who can improvise a recipe even when not all the ingredients needed are there. 
-    A user is wondering what to cook based on the few ingredients they have at home. 
-    Based on the list of ingridents, generate the name of a name of a recipe. """
-    
-    rec_name = get_gemini_response(name_prompt)
-    
-    return rec_name
-
-def recipe_steps(rec_name):
-
-    recipe_prompt = """ You are a chef who can improvise a recipe even when not all the ingredients needed are there. 
-    Can you generate numbered receipe steps for the recipe [recipe_name]?"""
-    
-    rec_steps = get_gemini_response(recipe_prompt)
-    
-    return rec_steps
-
-def output_recipe(rec_name, rec_steps):
-    st.write(f"Based on the ingridents you have, I have generated a recipe for you. The name of the recipe is {rec_name}")
-    st.write(f"Here are the steps to make the recipe: {rec_steps}")
-
 def get_gemini_response(user_prompt):
     chat = genai.Chat()
     response = chat.send_message(user_prompt, stream = True)
@@ -59,6 +35,29 @@ words = user_input.split()
 # Join the words with commas
 user_input = ', '.join(words)
 submit = st.button("Ask Chef Baloney")
+
+def name_recipe(ingridents):   
+
+    name_prompt = """ You are a chef who can improvise a recipe even when not all the ingredients needed are there. 
+    A user is wondering what to cook based on the few ingredients they have at home. 
+    Based on the list of ingridents, generate the name of a name of a recipe. """
+    
+    rec_name = get_gemini_response(name_prompt)
+    
+    return rec_name
+
+def recipe_steps(rec_name):
+
+    recipe_prompt = """ You are a chef who can improvise a recipe even when not all the ingredients needed are there. 
+    Can you generate numbered receipe steps for the recipe [recipe_name]?"""
+    
+    rec_steps = get_gemini_response(recipe_prompt)
+    
+    return rec_steps
+
+def output_recipe(rec_name, rec_steps):
+    st.write(f"Based on the ingridents you have, I have generated a recipe for you. The name of the recipe is {rec_name}")
+    st.write(f"Here are the steps to make the recipe: {rec_steps}")
 
 name_recipe = name_recipe(user_input)
 recipe_steps = recipe_steps(name_recipe)
