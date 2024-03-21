@@ -13,7 +13,6 @@ model = genai.GenerativeModel("gemini-pro")
 chat = model.start_chat(history=[])
 
 def get_gemini_response(user_prompt):
-    chat = genai.Chat()
     response = chat.send_message(user_prompt, stream = True)
     response.resolve()  # Ensure the response has completed its iteration
     return response
