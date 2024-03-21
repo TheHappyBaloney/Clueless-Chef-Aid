@@ -58,17 +58,24 @@ def output_recipe(rec_name, rec_steps):
     st.write(f"Based on the ingridents you have, I have generated a recipe for you. The name of the recipe is {rec_name}")
     st.write(f"Here are the steps to make the recipe: {rec_steps}")
 
-name_recipe = name_recipe(user_input)
+recipe_name = name_recipe(user_input)
 recipe_steps = recipe_steps(name_recipe)
 
 if submit and user_input:
     st.session_state['chat_history'].append(("You", user_input))
     st.subheader("Chef Baloney's Response")
-    for chunk in chat.send_message(user_input, stream=True):
-        print(output_recipe(name_recipe, recipe_steps))
-        
-        st.write(chunk.text)
-        st.session_state['chat_history'].append(("Chef Baloney", chunk.text))
+    
+    name_response = get_gemini_response(user_input)
+    recipe_name = name_response.result.candidates[0].content.parts[0].text
+    st.write(f"Based on the ingredients you have, I have generated a recipe for you. The name of the recipe is {recipe_name}")
+    
+    recipe_response = get_gemini_response(f"Can you generate numbered recipe steps for the recipe {recipe_name}?")
+    recipe_steps = recipe_response.result.candidates[0].content.parts[0].text
+    
+    st.write(f"Here are the steps to make the recipe: {recipe_steps}")
+    
+    st.session_state['chat_history'].append(("Chef Baloney", recipe_name))
+    st.session_state['chat_history'].append(("Chef Baloney", recipe_steps))
 
 st.markdown("<h1 style='font-size: 17px; text-align: center; color:  #cb202d;'> Pro Tip: In case you're too lazy to cook, order good food from  <a href='https://play.google.com/store/apps/details?id=com.application.zomato&hl=en_IN&gl=US' target='_blank'>Zomato</a>. </h1>  <h2 style='font-size: 25px; text-align: center; color:  #cb202d;'> But don't you dare order anything from Swiggy!!!! </h2> <h3 style='font-size: 17px; text-align: center; color:  #cb202d;'> They made @thehappybaloney sad by not commenting under their reel. </h3>", unsafe_allow_html=True)
 
