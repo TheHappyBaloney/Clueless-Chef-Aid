@@ -37,9 +37,10 @@ def output_recipe(rec_name, rec_steps):
     st.write(f"Here are the steps to make the recipe: {rec_steps}")
 
 def get_gemini_response(user_prompt):
+    chat = genai.Chat()
     response = chat.send_message(user_prompt, stream = True)
+    response.resolve()  # Ensure the response has completed its iteration
     return response
-
 
 st.set_page_config(page_title="Chef Baloney", page_icon="🍳", layout="wide")
 st.markdown("<h1 style='text-align: center;'>Ask Chef Baloney</h1>", unsafe_allow_html=True)
