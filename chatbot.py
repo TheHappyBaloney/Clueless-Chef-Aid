@@ -12,9 +12,35 @@ genai.configure(api_key=os.getenv("API_KEY"))
 model = genai.GenerativeModel("gemini-pro")
 chat = model.start_chat(history=[])
 
+
+def name_recipe(ingridents):   
+
+    name_prompt = """ You are a chef who can improvise a recipe even when not all the ingredients needed are there. 
+    A user is wondering what to cook based on the few ingredients they have at home. 
+    Based on the list of ingridents, generate the name of a name of a recipe. """
+    
+    rec_name = get_gemini_response(name_prompt)
+    
+    return rec_name
+
+def recipe_steps(rec_name):
+
+    recipe_prompt = """ You are a chef who can improvise a recipe even when not all the ingredients needed are there. 
+    Can you generate numbered receipe steps for the recipe [recipe_name]?"""
+    
+    rec_steps = get_gemini_response(recipe_prompt)
+    
+    return rec_steps
+
+def output_recipe(rec_name, rec_steps):
+    st.write(f"Based on the ingridents you have, I have generated a recipe for you. The name of the recipe is {rec_name}")
+    st.write(f"Here are the steps to make the recipe: {rec_steps}")
+
 def get_gemini_response(user_prompt):
     response = chat.send_message(user_prompt, stream = True)
     return response
+
+
 st.set_page_config(page_title="Chef Baloney", page_icon="🍳", layout="wide")
 st.markdown("<h1 style='text-align: center;'>Ask Chef Baloney</h1>", unsafe_allow_html=True)
 st.write("\n")
@@ -32,28 +58,16 @@ words = user_input.split()
 # Join the words with commas
 user_input = ', '.join(words)
 submit = st.button("Ask Chef Baloney")
-user_prompt = """ You are a chef who can improvise a recipe even when not all the ingredients needed are there. 
-A user is wondering what to cook based on the few ingredients they have at home. 
-For example if the the given ingredients are Sugar, Coffee, Flour, Almonds, Butter, you can suggest a recipe for Almond Coffee Cake, by following the steps below:
-1. Preheat your oven to 350 degrees F (175 degrees C).
-2. In a large bowl, cream together the sugar and butter until light and fluffy.
-3. Beat in the eggs, one at a time, then stir in the coffee.
-4. In a separate bowl, combine the flour, almonds, and baking powder.
-5. Gradually add the dry ingredients to the wet ingredients, mixing just until combined.
-6. Pour the batter into a greased 9x9 inch baking dish.
-7. Bake for 30-35 minutes, or until a toothpick inserted into the center comes out clean.
-8. Allow the cake to cool for a few minutes before serving.
 
-Use Clear and concise language and a casual tone. """
+name_recipe = name_recipe(user_input)
+recipe_steps = recipe_steps(name_recipe)
 
 if submit and user_input:
-    st.session_state['chat_history'].append(f"You: {user_prompt}")
-    
-    response = get_gemini_response(user_input)
-    
-    st.session_state['chat_history'].append(f"Chef Baloney: {response}")
+    st.session_state['chat_history'].append(("You", user_input))
     st.subheader("Chef Baloney's Response")
-    for chunk in response:
+    for chunk in chat.send_message(user_input, stream=True):
+        print(output_recipe(name_recipe, recipe_steps))
+        
         st.write(chunk.text)
         st.session_state['chat_history'].append(("Chef Baloney", chunk.text))
 
