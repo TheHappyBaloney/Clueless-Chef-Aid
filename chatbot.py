@@ -43,7 +43,8 @@ def get_recipe_name(ingredients):
 
 def get_recipe_steps(recipe_name):
     prompt = f"""Generate numbered recipe steps for the recipe "{recipe_name}"."""
-    recipe_steps = get_gemini_response(prompt)
+    recipe_steps_response = get_gemini_response(prompt)
+    recipe_steps = recipe_steps_response.candidates[0].content.parts[0].text
     return recipe_steps
 
 def format_output(recipe_name, recipe_steps):
