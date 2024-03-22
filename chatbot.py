@@ -39,15 +39,13 @@ def get_recipe_name(ingredients):
     prompt = """ You are a chef who can improvise a recipe even when not all the ingredients needed are there. 
     A user is wondering what to cook based on the few ingredients they have at home. 
     Based on the list of ingredients, generate the name of a recipe. """
-    response = get_gemini_response(prompt)
-    recipe_name = response.result.candidates[0].content.parts[0].text
+    recipe_name = get_gemini_response(prompt)
     return recipe_name
 
 def get_recipe_steps(recipe_name):
     prompt = f""" You are a chef who can improvise a recipe even when not all the ingredients needed are there. 
     Can you generate numbered recipe steps for the recipe {recipe_name}?"""
-    response = get_gemini_response(prompt)
-    recipe_steps = response.result.candidates[0].content.parts[0].text
+    recipe_steps = get_gemini_response(prompt)
     return recipe_steps
 
 def format_output(recipe_name, recipe_steps):
