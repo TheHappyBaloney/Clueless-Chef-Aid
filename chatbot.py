@@ -67,6 +67,6 @@ st.markdown("<h1 style='font-size: 17px; text-align: center; color:  #cb202d;'> 
 
 footer_placeholder.markdown("""
     <div style="position: bottom; width: 100%; text-align: center;">
-        <h1 style='font-size: 18px;'>This site is brought to you by thehappybaloney. It's a work-in progress. If you have any queries, or suggestions on how this site can be made better feel free to reach out to me on Twitter or Github (@thehappybaloney).</h1>
+        <h1 style='font-size: 18px;'>This site is brought to you by thehappybaloney. If you have any queries, or suggestions on how this site can be made better feel free to reach out to me on Twitter or Github (@thehappybaloney).</h1>
     </div>
 """, unsafe_allow_html=True)
