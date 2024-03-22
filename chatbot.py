@@ -35,47 +35,34 @@ words = user_input.split()
 user_input = ', '.join(words)
 submit = st.button("Ask Chef Baloney")
 
-def name_recipe(ingridents):   
-
-    name_prompt = """ You are a chef who can improvise a recipe even when not all the ingredients needed are there. 
+def get_recipe_name(ingredients):
+    prompt = """ You are a chef who can improvise a recipe even when not all the ingredients needed are there. 
     A user is wondering what to cook based on the few ingredients they have at home. 
-    Based on the list of ingridents, generate the name of a name of a recipe. """
-    
-    rec_name = get_gemini_response(name_prompt)
-    
-    return rec_name
+    Based on the list of ingredients, generate the name of a recipe. """
+    response = get_gemini_response(prompt)
+    recipe_name = response.result.candidates[0].content.parts[0].text
+    return recipe_name
 
-def recipe_steps(rec_name):
+def get_recipe_steps(recipe_name):
+    prompt = f""" You are a chef who can improvise a recipe even when not all the ingredients needed are there. 
+    Can you generate numbered recipe steps for the recipe {recipe_name}?"""
+    response = get_gemini_response(prompt)
+    recipe_steps = response.result.candidates[0].content.parts[0].text
+    return recipe_steps
 
-    recipe_prompt = """ You are a chef who can improvise a recipe even when not all the ingredients needed are there. 
-    Can you generate numbered receipe steps for the recipe [recipe_name]?"""
-    
-    rec_steps = get_gemini_response(recipe_prompt)
-    
-    return rec_steps
-
-def output_recipe(rec_name, rec_steps):
-    st.write(f"Based on the ingridents you have, I have generated a recipe for you. The name of the recipe is {rec_name}")
-    st.write(f"Here are the steps to make the recipe: {rec_steps}")
-
-recipe_name = name_recipe(user_input)
-recipe_steps = recipe_steps(name_recipe)
+def format_output(recipe_name, recipe_steps):
+    output = f"Based on the ingredients you have, I have generated a recipe for you. The name of the recipe is {recipe_name}\n"
+    output += f"Here are the steps to make the recipe:\n{recipe_steps}"
+    return output
 
 if submit and user_input:
     st.session_state['chat_history'].append(("You", user_input))
     st.subheader("Chef Baloney's Response")
-    
-    name_response = get_gemini_response(user_input)
-    recipe_name = name_response.result.candidates[0].content.parts[0].text
-    st.write(f"Based on the ingredients you have, I have generated a recipe for you. The name of the recipe is {recipe_name}")
-    
-    recipe_response = get_gemini_response(f"Can you generate numbered recipe steps for the recipe {recipe_name}?")
-    recipe_steps = recipe_response.result.candidates[0].content.parts[0].text
-    
-    st.write(f"Here are the steps to make the recipe: {recipe_steps}")
-    
-    st.session_state['chat_history'].append(("Chef Baloney", recipe_name))
-    st.session_state['chat_history'].append(("Chef Baloney", recipe_steps))
+    recipe_name = get_recipe_name(user_input)
+    recipe_steps = get_recipe_steps(recipe_name)
+    output = format_output(recipe_name, recipe_steps)
+    st.write(output)
+    st.session_state['chat_history'].append(("Chef Baloney", output))
 
 st.markdown("<h1 style='font-size: 17px; text-align: center; color:  #cb202d;'> Pro Tip: In case you're too lazy to cook, order good food from  <a href='https://play.google.com/store/apps/details?id=com.application.zomato&hl=en_IN&gl=US' target='_blank'>Zomato</a>. </h1>  <h2 style='font-size: 25px; text-align: center; color:  #cb202d;'> But don't you dare order anything from Swiggy!!!! </h2> <h3 style='font-size: 17px; text-align: center; color:  #cb202d;'> They made @thehappybaloney sad by not commenting under their reel. </h3>", unsafe_allow_html=True)
 
