@@ -36,16 +36,12 @@ user_input = ', '.join(words)
 submit = st.button("Ask Chef Baloney")
 
 def get_recipe_name(ingredients):
-    prompt = """ You are a chef who can improvise a recipe even when not all the ingredients needed are there. 
-    A user is wondering what to cook based on the few ingredients they have at home. 
-    Based on the list of ingredients, generate the name of a recipe. """
+    prompt = f"""Based on the ingredients provided ({ingredients}), please generate a name for a recipe."""
     recipe_name = get_gemini_response(prompt)
     return recipe_name
 
-
 def get_recipe_steps(recipe_name):
-    prompt = f""" You are a chef who can improvise a recipe even when not all the ingredients needed are there. 
-    Can you generate numbered recipe steps for the recipe {recipe_name}?"""
+    prompt = f"""Generate numbered recipe steps for the recipe "{recipe_name}"."""
     recipe_steps = get_gemini_response(prompt)
     return recipe_steps
 
