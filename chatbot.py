@@ -38,7 +38,7 @@ submit = st.button("Ask Chef Baloney")
 def get_recipe_name(ingredients):
     prompt = f"""Based on the ingredients provided ({ingredients}), please generate a name for a recipe."""
     recipe_name_response = get_gemini_response(prompt)
-    recipe_name = recipe_name_response.result.candidates[0].content.parts[0].text
+    recipe_name = recipe_name_response.candidates[0].content.parts[0].text
     return recipe_name
 
 def get_recipe_steps(recipe_name):
