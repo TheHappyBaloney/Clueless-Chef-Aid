@@ -2,13 +2,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import streamlit as st
-import os
 import google.generativeai as genai
 import streamlit.components.v1
 import config
 
-API_KEY= config.key
-genai.configure(api_key=os.getenv("API_KEY"))
+API_KEY= config.GOOGLE_API_KEY
+genai.configure(api_key="API_KEY")
 
 model = genai.GenerativeModel("gemini-pro")
 chat = model.start_chat(history=[])
