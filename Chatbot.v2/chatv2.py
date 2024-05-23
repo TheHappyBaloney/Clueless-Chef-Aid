@@ -24,9 +24,9 @@ app_mode =  st.sidebar.selectbox("Choose the app mode", ["Home", "About Clueless
 # Main Page 
 if app_mode == "Home":
     st.markdown("<h2 style='text-align: center;'>Welcome to Clueless Chef's Aid</h2>", unsafe_allow_html=True)
-    img_path = "/workspaces/Clueless-Chef-Aid/Banner2-removebg-preview.png"
+    img_path = "/workspaces/Clueless-Chef-Aid/Banner.jpg"
     st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
-    st.image(img_path)
+    st.image(img_path, use_column_width=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown("<h3 style='text-align: center;'>Ask Chef Baloney anything about cooking and recipes</h3>", unsafe_allow_html=True)
