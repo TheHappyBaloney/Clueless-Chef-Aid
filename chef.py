@@ -3,8 +3,7 @@ import numpy as np
 import os
 from dotenv import load_dotenv
 load_dotenv()
-from pred import model_prediction
-import 
+import google.generativeai as genai
 model = genai.GenerativeModel("gemini-pro")
 chat = model.start_chat(history=[])
 
@@ -29,6 +28,11 @@ if app_mode == "Home":
     st.write("Chef baloney is here to help you find recipes based on the ingredients you have at home. Simply upload the ingredients you have and we will provide you with a list of recipes you can make.")
     st.write("Let's get started!")
     st.write("Write down the ingredients you have at home and upload the list below.")
+    
+# Initialize chat_history in session state if it doesn't exist
+    if 'chat_history' not in st.session_state:
+        st.session_state['chat_history'] = []
+
     st.write("1. Ingredients list can include any vegetables, fruits, meats, leftover dishes, condiments and spices that you have at home.")
     st.write("2. Please separate each ingredient with a comma.")
     st.write("3. If you do not have the whole vegetable but instead a component of it, that you would like to incorporate in. for e.g. if you only have the lemon peel of a whole lemon, you can write 'lemon peel' in the ingredient list.")
@@ -39,11 +43,11 @@ if app_mode == "Home":
     st.write("8. Enjoy cooking!")
 
     # Ingredients
-    user_input = st.text_input("Ingredients", height=100, key="input")
+    ingredients = st.text_input("Ingredients", key="ingredients")
     # Split the user's input into words
-    words = user_input.split()
+    words = ingredients.split()
     # Join the words with commas
-    user_input = ', '.join(words)
+    ingredients = ', '.join(words)
 
     # Allergens
     allergens = st.multiselect("Allergens", ["Peanuts", "Tree Nuts", "Soy", "Dairy", "Eggs", "Fish", "Shellfish", "Wheat","Others","None"], key="allergens")
@@ -56,10 +60,6 @@ if app_mode == "Home":
     if dietary_restrictions == "Others":
         st.text_input("Others", height=100, key="others")
     dietary_restrictions_str = ", ".join(dietary_restrictions)
-
-    # Find Recipes
-    if st.button("Ask Chef Baloney"):
-       st.write("Finding Recipes...")
 
     def get_recipe_name(ingredients, dietary_restrictions_str, allergens_str):
         prompt = f"""Based on the ingredients provided ({ingredients}), dietary restrictions({dietary_restrictions_str}) and allergens({allergens_str}), please generate a name for a recipe."""
@@ -78,14 +78,15 @@ if app_mode == "Home":
         output += f"Here are the steps to make the recipe:\n{recipe_steps}"
         return output
 
-    if submit and user_input:
-        st.session_state['chat_history'].append(("You", user_input))
-        st.subheader("Chef Baloney's Response")
-        recipe_name = get_recipe_name(user_input)
-        recipe_steps = get_recipe_steps(recipe_name)
-        output = format_output(recipe_name, recipe_steps)
-        st.write(output)
-        st.session_state['chat_history'].append(("Chef Baloney", output))
+# Find Recipes
+    if st.button("Ask Chef Baloney"):
+       st.write("Finding Recipes...")
+       st.session_state['chat_history'].append(("You", ingredients))
+       st.subheader("Chef Baloney's Response")
+       recipe_name = get_recipe_name(ingredients, dietary_restrictions_str, allergens_str)
+       recipe_steps = get_recipe_steps(recipe_name)
+       output = format_output(recipe_name, recipe_steps)
+       st.write(output)
+       st.session_state['chat_history'].append(("Chef Baloney", output))
 
     footer_placeholder = st.empty()
-
