@@ -30,14 +30,13 @@ if app_mode == "About Clueless Chef's Aid":
         st.write("Get started with Clueless Chef's Aid today and discover the joy of cooking!")
 
 if app_mode == "About the Developer":
-        st.image("https://avatars.githubusercontent.com/u/92734728?v=4", width=300)
+        st.image("Clueless-Chef-Aid/images/Great Pic.jpg", width=300)
         st.title("About the Developer 👋🏾")
         st.write("Clueless Chef's Aid is developed by [TheHappyBaloney](https://github.com/TheHappyBaloney). TheHappyBaloney is an AI enthusiast who loves to explore the world of Machine Learning and Generative AI and create innovative solutions using the latest AI technologies.")
         st.write("Thank you for using Clueless Chef's Aid and for supporting Baloney. We look forward to helping you discover new recipes and explore the world of cooking with our AI-powered solutions.")
         st.write("Happy cooking!")
 
 if app_mode == "Home":
-    st.title("Clueless Chef's Aid")
     st.header("Welcome to Clueless Chef's Aid!")
     st.write("Chef baloney is here to help you find recipes based on the ingredients you have at home. Simply upload the ingredients you have and we will provide you with a list of recipes you can make.")
     st.write("Let's get started!")
