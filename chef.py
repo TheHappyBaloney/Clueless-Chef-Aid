@@ -90,3 +90,16 @@ if app_mode == "Home":
        st.session_state['chat_history'].append(("Chef Baloney", output))
 
     footer_placeholder = st.empty()
+
+    if app_mode == "About Clueless Chef's Aid":
+        st.title("About Clueless Chef's Aid")
+        st.write("Clueless Chef's Aid is a recipe recommendation system that helps you find recipes based on the ingredients you have at home. Simply upload the ingredients you have and we will provide you with a list of recipes you can make.")
+        st.write("The system uses a generative model to generate recipe names and steps based on the ingredients provided by the user. The generative model is trained on a large dataset of recipes and can generate realistic recipes that are easy to follow.")
+        st.write("Clueless Chef's Aid is designed to help you make the most of the ingredients you have at home and discover new recipes that you can try out. Whether you are a beginner cook or an experienced chef, Clueless Chef's Aid can help you find new and exciting recipes to try out.")
+        st.write("Get started with Clueless Chef's Aid today and discover the joy of cooking!")
+
+    if app_mode == "About the Developer":
+        st.title("About the Developer 👋🏾")
+        st.write("Clueless Chef's Aid is developed by [TheHappyBaloney](https://github.com/TheHappyBaloney). TheHappyBaloney is an AI enthusiast who loves to explore the world of Machine Learning and Generative AI and create innovative solutions using the latest AI technologies.")
+        st.write("Thank you for using Clueless Chef's Aid and for supporting Baloney. We look forward to helping you discover new recipes and explore the world of cooking with our AI-powered solutions.")
+        st.write("Happy cooking!")
