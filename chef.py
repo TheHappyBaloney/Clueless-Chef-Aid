@@ -14,8 +14,6 @@ def get_gemini_response(user_prompt):
     return response
 
 st.set_page_config(page_title="Chef Baloney", page_icon="🍳", layout="wide")
-st.markdown("<h1 style='text-align: center;'>Ask Chef Baloney</h1>", unsafe_allow_html=True)
-st.write("\n")
 
 # Side Bar
 st.sidebar.title("Explore")
@@ -23,7 +21,7 @@ app_mode = st.sidebar.selectbox("Choose the app mode", ["Home", "About Clueless 
 
 # Main Page
 if app_mode == "About Clueless Chef's Aid":
-        st.title("About Clueless Chef's Aid")
+        st.title("About Clueless Chef's Aid 🍳")
         st.write("Clueless Chef's Aid is a recipe recommendation system that helps you find recipes based on the ingredients you have at home. Simply upload the ingredients you have and we will provide you with a list of recipes you can make.")
         st.write("The system uses a generative model to generate recipe names and steps based on the ingredients provided by the user. The generative model is trained on a large dataset of recipes and can generate realistic recipes that are easy to follow.")
         st.write("Clueless Chef's Aid is designed to help you make the most of the ingredients you have at home and discover new recipes that you can try out. Whether you are a beginner cook or an experienced chef, Clueless Chef's Aid can help you find new and exciting recipes to try out.")
@@ -36,7 +34,7 @@ if app_mode == "About the Developer":
         st.write("Happy cooking!")
 
 if app_mode == "Home":
-    st.header("Welcome to Clueless Chef's Aid!")
+    st.header("Welcome to Clueless Chef's Aid! 🍳")
     st.write("Chef baloney is here to help you find recipes based on the ingredients you have at home. Simply upload the ingredients you have and we will provide you with a list of recipes you can make.")
     st.write("Let's get started!")
     st.write("Write down the ingredients you have at home and upload the list below.")
