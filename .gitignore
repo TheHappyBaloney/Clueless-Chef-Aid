@@ -129,7 +129,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-
+GOOGLE_API_KEY="AIzaSyAZHtvsNPpPsriYSWmzBHcXEl3U3ieJvqE"
 # Spyder project settings
 .spyderproject
 .spyproject

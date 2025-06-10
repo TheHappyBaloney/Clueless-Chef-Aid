@@ -4,10 +4,9 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 import google.generativeai as genai
-model = genai.GenerativeModel("gemini-pro")
+model = genai.GenerativeModel("gemini-2.0-flash")
 chat = model.start_chat(history=[])
-
-CHEF_API_KEY = os.getenv("CHEF_API_KEY")
+CHEF_API_KEY = os.getenv("GOOGLE_API_KEY")
 def get_gemini_response(user_prompt):
     response = chat.send_message(user_prompt, stream = True)
     response.resolve() 
